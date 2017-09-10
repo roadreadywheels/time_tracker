@@ -2,19 +2,40 @@
 
 <h3>Submit Listing</h3>
 <%= form_for [@employee, TimeEntry.new] do |f| %>
-	<%= f.label :customer %>
+	<%= f.label :Company %>
 	<%= f.collection_select(:account_id, Customer.all, :id, :name) %>
-	<%= f.label :listing %>
-	<%= f.text_field :listing, :value => 1 %>
-	<%= f.submit %>
+	<div class="give-me-some-space">
+		<%= f.label :listing %>
+		<span style="padding-left: 35px;"><%= f.text_field :listing, :value => 1 %></span>
+	<%= f.submit "Submit Listing" %>
+	</div>
 <% end %>
 
 <h3>Listing Entries</h3>
 
-<% @employee.time_entries.each do |entry| %>
-	<div>
-		<%= entry.listing %>
-		<%= entry.account.name %>
-		<%= entry.created_at %>
-	</div>
-<% end %>
+<div class="table">
+	<table class="table table-striped">
+	<tr>
+		<thead>
+			<th class="col-sm-2">Company</th>
+			<th class="col-sm-2">Listings Created</th>
+			<th class="col-sm-2">R Number</th>
+			<th class="col-sm-2">Cost</th>
+			<th class="col-sm-2">Date</th>
+			<th class="col-sm-2">Time</th>
+		</thead>
+	</tr>
+
+	<% @employee.time_entries.each do |entry| %>
+		<tr>
+				<td class="col-sm-2"><%= entry.account.name %></td>
+				<td class="col-sm-2"><%= entry.listing %></td>
+				<td class="col-sm-2"><%= entry.r_number %></td>
+				<td class="col-sm-2"><%= number_to_currency(entry.listing * 0.30, precision: 2) %>
+				<td class="col-sm-2"><%= entry.created_at.strftime('%m/%d/%y') %></td>
+				<td class="col-sm-2"><%= entry.created_at.strftime('%I:%M %p') %></td>
+		</tr>
+	<% end %>
+	</table>
+</div>
+

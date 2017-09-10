@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170909222529) do
+ActiveRecord::Schema.define(version: 20170910023739) do
 
   create_table "account_entries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "listing"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20170909222529) do
     t.datetime "updated_at", null: false
     t.integer "account_id"
     t.string "type"
+    t.integer "r_number"
     t.index ["customer_id"], name: "index_account_entries_on_customer_id"
     t.index ["employee_id"], name: "index_account_entries_on_employee_id"
   end
