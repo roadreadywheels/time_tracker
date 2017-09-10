@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Time Tracker</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <!-- Navbar -->
+		<div class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+
+				<a class="navbar-brand text-muter" href="#"><span style="color:red;">Bill Smith Auto Parts</span></a>
+				<div class="collapse navbar-collapse">
+				</div>			
+			</div>
+		</div>
+
+		<!-- End Navbar -->
+
+  	<div class="container" id="body_container">
+    	<%= yield %>  		
+  	</div>
+  </body>
+</html>

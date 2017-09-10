@@ -1,0 +1,20 @@
+<h1><%= @employee.name %></h1>
+
+<h3>Submit Listing</h3>
+<%= form_for [@employee, TimeEntry.new] do |f| %>
+	<%= f.label :customer %>
+	<%= f.collection_select(:account_id, Customer.all, :id, :name) %>
+	<%= f.label :listing %>
+	<%= f.text_field :listing, :value => 1 %>
+	<%= f.submit %>
+<% end %>
+
+<h3>Listing Entries</h3>
+
+<% @employee.time_entries.each do |entry| %>
+	<div>
+		<%= entry.listing %>
+		<%= entry.account.name %>
+		<%= entry.created_at %>
+	</div>
+<% end %>
